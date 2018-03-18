@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 public class Film{
-    public final static String HostImage = " http://image.tmdb.org/t/p/w500";
+    public final static String HostImage = "http://image.tmdb.org/t/p/w500";
     private String title;
     private String overview;
     private Boolean isVideo;
