@@ -1,6 +1,7 @@
 package com.example.rio.week3hw;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,12 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.support.v4.content.ContextCompat.startActivity;
+
 
 /**
  * Created by Rio on 3/15/2018.
@@ -40,10 +43,10 @@ public class RecyclerDataAdapter extends RecyclerView.Adapter<RecyclerDataAdapte
 
     @Override
     public void onBindViewHolder(DataViewHolder holder, int position) {
-        Film film = films.get(position);
-        final String title = film.getTitle();
+        final Film film = films.get(position);
+        String title = film.getTitle();
         String overView = film.getOverview();
-        String posterPath = film.HostImage + film.getPosterPath();
+        String posterPath = film.getPosterPath();
         Boolean isPlay = film.getIsVideo();
         holder.textTitle.setText(title);
         holder.textOverview.setText(overView);
@@ -54,12 +57,25 @@ public class RecyclerDataAdapter extends RecyclerView.Adapter<RecyclerDataAdapte
         } else {
             holder.imPlay.setVisibility(View.INVISIBLE);
         }
-        holder.imPoster.setOnClickListener(new View.OnClickListener() {
+//        holder.imPoster.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(mcontext,title, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+        holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mcontext,title, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mcontext,FilmDetailActivity.class);
+                intent.putExtra("Title",film.getTitle());
+                intent.putExtra("Overview",film.getOverview());
+                intent.putExtra("ReleaseDate",film.getReleaseDate());
+                intent.putExtra("BackdropPath",film.getBackdropPath());
+                intent.putExtra("VoteAverage",film.getVoteAverage());
+                mcontext.startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -72,10 +88,10 @@ public class RecyclerDataAdapter extends RecyclerView.Adapter<RecyclerDataAdapte
         private ImageView imPlay;
         private TextView textTitle;
         private TextView textOverview;
-        private LinearLayout line;
+        private LinearLayout item;
         public DataViewHolder(View itemView) {
             super(itemView);
-            line = (LinearLayout) itemView.findViewById(R.id.line);
+            item = (LinearLayout) itemView.findViewById(R.id.line);
             imPoster = (ImageView) itemView.findViewById(R.id.imgPoster);
             imPlay = (ImageView) itemView.findViewById(R.id.imgPlay);
             textTitle = (TextView) itemView.findViewById(R.id.txtTitle);

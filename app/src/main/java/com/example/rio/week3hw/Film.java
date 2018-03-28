@@ -52,13 +52,13 @@ public class Film{
         this.isVideo = isVideo;
     }
     public String getPosterPath() {
-        return posterPath;
+        return HostImage + posterPath;
     }
     public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
+        this.posterPath =  posterPath;
     }
     public String getBackdropPath() {
-        return backdropPath;
+        return HostImage + backdropPath;
     }
     public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
