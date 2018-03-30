@@ -1,7 +1,8 @@
-package com.example.rio.week3hw;
+package com.example.rio.week4hw;
 
 import android.content.Context;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,7 +28,6 @@ public class RecyclerDataAdapter extends RecyclerView.Adapter<RecyclerDataAdapte
 
     private Context mcontext;
     private List<Film> films;
-
     public RecyclerDataAdapter(Context context, ArrayList<Film> films) {
         this.mcontext = context;
         this.films = films;
@@ -83,7 +83,7 @@ public class RecyclerDataAdapter extends RecyclerView.Adapter<RecyclerDataAdapte
         return films == null ? 0: films.size();
     }
 ;
-    public class DataViewHolder extends RecyclerView.ViewHolder {
+    public class DataViewHolder extends RecyclerView.ViewHolder{
         private ImageView imPoster;
         private ImageView imPlay;
         private TextView textTitle;
@@ -98,4 +98,5 @@ public class RecyclerDataAdapter extends RecyclerView.Adapter<RecyclerDataAdapte
             textOverview = (TextView) itemView.findViewById(R.id.txtOverview);
         }
     }
+
 }
